@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -25,8 +26,8 @@ public class DatabaseManager extends SQLiteOpenHelper {
         // build sql create statement
         String sqlCreate = "create table " + TABLE_FRIEND + "( " + ID;
         sqlCreate += " integer primary key autoincrement, " + EMAIL;
-        sqlCreate += " text, " + FIRST_NAME + " string )";
-        sqlCreate += " text, " + LAST_NAME + " string )";
+        sqlCreate += " text, " + FIRST_NAME;
+        sqlCreate += " text, " + LAST_NAME + " text )";
 
         db.execSQL(sqlCreate);
     }
@@ -101,6 +102,23 @@ public class DatabaseManager extends SQLiteOpenHelper {
             friend = new Friend(Integer.parseInt(cursor.getString(0)),
                     cursor.getString(1), cursor.getString(2), cursor.getString(3));
         }
+        return friend;
+    }
+
+    public Friend selectByEmail(String email){
+        String sqlQuery = "select * from " + TABLE_FRIEND;
+        sqlQuery += " where " + EMAIL + " = " + "'" + email + "'" ;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(sqlQuery, null);
+
+        Friend friend = null;
+        if (cursor.moveToFirst()) {
+            friend = new Friend(Integer.parseInt(cursor.getString(0)),
+                    cursor.getString(1), cursor.getString(2), cursor.getString(3));
+        }
+
+        Log.d("result", friend.toString());
         return friend;
     }
 }

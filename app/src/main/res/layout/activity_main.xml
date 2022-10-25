@@ -20,7 +20,19 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <include layout="@layout/content_main" />
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/search"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
 
+    <TextView
+        android:id="@+id/show_result"
+        android:layout_below="@id/search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+
+    <include layout="@layout/content_main" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

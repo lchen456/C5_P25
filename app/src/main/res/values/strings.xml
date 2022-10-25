@@ -6,8 +6,9 @@
     <string name="delete">DELETE</string>
     <string name="update">UPDATE</string>
 
-    <string name="label_name">Name</string>
-    <string name="label_price">Price</string>
+    <string name="label_firstname">First Name</string>
+    <string name="label_lastname">Last Name</string>
+    <string name="label_email">Email</string>
     <string name="button_add">ADD</string>
     <string name="button_back">BACK</string>
 </resources>

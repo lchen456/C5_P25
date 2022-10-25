@@ -8,45 +8,61 @@
     android:paddingBottom="@dimen/activity_vertical_margin">
 
     <TextView
-        android:id="@+id/label_name"
+        android:id="@+id/first_name"
         android:layout_marginTop="50dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/label_name"/>
+        android:text="@string/label_firstname"/>
 
     <EditText
-        android:id="@+id/input_name"
-        android:layout_toRightOf="@+id/label_name"
+        android:id="@+id/input_first_name"
+        android:layout_toRightOf="@+id/first_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/label_name"
+        android:layout_alignBottom="@+id/first_name"
         android:layout_marginLeft="50dp"
         android:orientation="horizontal" />
 
     <TextView
-        android:id="@+id/label_price"
+        android:id="@+id/last_name"
+        android:layout_marginTop="50dp"
+        android:layout_below="@id/first_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/label_name"
-        android:layout_marginTop="50dp"
-        android:text="@string/label_price" />
+        android:text="@string/label_lastname"/>
 
     <EditText
-        android:id="@+id/input_price"
+        android:id="@+id/input_last_name"
+        android:layout_toRightOf="@+id/last_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/label_price"
-        android:layout_alignLeft="@+id/input_name"
-        android:layout_alignParentRight="true"
-        android:layout_toRightOf="@+id/label_price"
-        android:inputType="numberDecimal" />
+        android:layout_alignBottom="@+id/last_name"
+        android:layout_marginLeft="50dp"
+        android:orientation="horizontal" />
+
+    <TextView
+        android:id="@+id/email"
+        android:layout_marginTop="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/last_name"
+        android:text="@string/label_email"/>
+
+    <EditText
+        android:id="@+id/input_email"
+        android:layout_toRightOf="@+id/email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/email"
+        android:layout_marginLeft="50dp"
+        android:orientation="horizontal" />
 
     <Button
         android:id="@+id/button_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/label_price"
+        android:layout_below="@+id/email"
         android:layout_marginTop="50dp"
         android:onClick="insert"
         android:text="@string/button_add" />

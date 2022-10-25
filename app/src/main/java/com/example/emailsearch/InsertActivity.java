@@ -18,22 +18,25 @@ public class InsertActivity extends AppCompatActivity {
 
     public void insert( View v ) {
         // Retrieve name and price
-        EditText nameEditText = ( EditText) findViewById( R.id.input_name );
-        EditText priceEditText = ( EditText) findViewById( R.id.input_price );
-        String name = nameEditText.getText( ).toString( );
-        String priceString = priceEditText.getText( ).toString( );
+        EditText firstnameEditText = ( EditText) findViewById( R.id.input_first_name );
+        EditText lastnameEditText = ( EditText) findViewById( R.id.input_last_name );
+        EditText emailEditText = ( EditText) findViewById( R.id.input_email );
+        String firstname = firstnameEditText.getText( ).toString( );
+        String lastname = lastnameEditText.getText( ).toString( );
+        String email = emailEditText.getText( ).toString( );
 
-        // insert new candy in database
+        // insert new friend into database
         try {
-            Friend friend= new Friend( 0, "John", "Smith", "johnsmith@gmail.com" );
+            Friend friend= new Friend( 0, firstname, lastname, email );
             dbManager.insert( friend );
             Toast.makeText( this, "Friend added", Toast.LENGTH_SHORT ).show( );
         } catch( Exception e ) {
         }
 
         // clear data
-        nameEditText.setText( "" );
-        priceEditText.setText( "" );
+        firstnameEditText.setText( "" );
+        lastnameEditText.setText( "" );
+        emailEditText.setText( "" );
     }
 
     public void goBack( View v ) {
