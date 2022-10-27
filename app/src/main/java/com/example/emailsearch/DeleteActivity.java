@@ -1,5 +1,6 @@
 package com.example.emailsearch;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -31,11 +33,12 @@ public class DeleteActivity extends AppCompatActivity {
         ArrayList<Friend> friends = dbManager.selectAll();
         RelativeLayout layout = new RelativeLayout(this);
         ScrollView scrollView = new ScrollView(this);
+
         RadioGroup group = new RadioGroup(this);
         for (Friend friend : friends){
             RadioButton rb = new RadioButton(this);
             rb.setId(friend.getId());
-            rb.setText(friend.toString());
+            rb.setText(friend.toNEString());
             group.addView(rb);
         }
         //event handling
@@ -47,7 +50,10 @@ public class DeleteActivity extends AppCompatActivity {
         backButton.setText(R.string.button_back);
         backButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-                DeleteActivity.this.finish();
+//                DeleteActivity.this.finish();
+                Intent insertIntent = new Intent(DeleteActivity.this, MainActivity.class );
+                startActivity( insertIntent );
+
             }
         });
 

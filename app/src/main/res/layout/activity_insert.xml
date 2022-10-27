@@ -54,6 +54,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/email"
+        android:inputType="textEmailAddress"
         android:layout_marginLeft="50dp"
         android:orientation="horizontal" />
 

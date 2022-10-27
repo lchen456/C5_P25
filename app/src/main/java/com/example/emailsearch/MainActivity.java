@@ -10,6 +10,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -21,37 +26,54 @@ public class MainActivity extends AppCompatActivity {
     SearchView searchbar;
     DatabaseManager dbManager;
     TextView result;
+    AutoCompleteTextView search;
+    Button searchButton;
+    AutoCompleteTextView autoComplete;
 
     @Override
     protected void onCreate( Bundle savedInstanceState ) {
-        super.onCreate( savedInstanceState );
-        setContentView( R.layout.activity_main );
-        Toolbar toolbar = ( Toolbar ) findViewById( R.id.toolbar );
-        setSupportActionBar( toolbar );
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         dbManager = new DatabaseManager(this);
         result = (TextView) findViewById(R.id.show_result);
+        searchButton = (Button) findViewById(R.id.searchButton);
 
-        searchbar = (SearchView) findViewById(R.id.search);
-        searchbar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
 
-//                Log.d("query", query.toString());
-//                Log.d("query length", String.valueOf(query.length()));
-//                Log.d("result", dbManager.selectByEmail(query).toString());
-                if (query.length() > 0){
-                    result.setText(dbManager.selectByEmail(query).toNameString());
-                }
-                return true;
-            }
+        //Creating the instance of ArrayAdapter containing list of emails
+        ArrayList<Friend> friends = dbManager.selectAll();
+        String[] emails = new String[friends.size()];
+        for (int i = 0; i < friends.size(); i++) {
+            emails[i] = friends.get(i).toEmailString();
+        }
 
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                return false;
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>
+                (this, android.R.layout.select_dialog_item, emails);
+        //Getting the instance of AutoCompleteTextView
+        autoComplete = (AutoCompleteTextView) findViewById(R.id.autoComplete);
+        autoComplete.setThreshold(1);//will start working from first character
+        autoComplete.setAdapter(adapter);//setting the adapter data into the AutoCompleteTextView
+
+        autoComplete.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long j) {
+                //String query = ((AutoCompleteTextView) view.findViewById(R.id.search)).getText().toString();
+                String query = adapterView.getItemAtPosition(i).toString();
+                autoComplete.setText(query);
             }
         });
 
+    }
+
+    public void searchForFriend(View view){
+        String query = autoComplete.getText().toString();
+
+        try {
+            result.setText(dbManager.selectByEmail(query).toNameString());
+        } catch (Exception e){
+            result.setText("friend not found");
+        }
     }
 
     @Override
@@ -72,10 +94,10 @@ public class MainActivity extends AppCompatActivity {
                 Intent deleteIntent = new Intent( this, DeleteActivity.class );
                 this.startActivity( deleteIntent );
                 return true;
-//            case R.id.action_update:
-//                Intent updateIntent = new Intent( this, UpdateActivity.class );
-//                this.startActivity( updateIntent );
-//                return true;
+            case R.id.action_update:
+                Intent updateIntent = new Intent( this, UpdateActivity.class );
+                this.startActivity( updateIntent );
+                return true;
             default:
                 return super.onOptionsItemSelected( item );
         }

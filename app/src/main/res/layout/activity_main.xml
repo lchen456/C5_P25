@@ -25,23 +25,46 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <androidx.appcompat.widget.SearchView
-            android:id="@+id/search"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            />
+            android:layout_marginTop="100dp"
+            android:gravity="center_vertical"
+            android:layout_marginHorizontal="30dp"
+            android:orientation="horizontal"
+            >
+
+            <AutoCompleteTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:hint="Search by Email"
+                android:id="@+id/autoComplete"
+                android:singleLine="true"
+                android:inputType="textEmailAddress"
+                android:imeOptions="actionSearch"
+                />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/searchButton"
+                android:text="🔍"
+                android:layout_weight="1"
+                android:onClick="searchForFriend"
+                />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/show_result"
-            android:layout_below="@id/search"
             android:text="search result"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_weight="5"
+            android:textSize="25dp"
             android:layout_gravity="center_horizontal"
             />
-
 
     </LinearLayout>
 

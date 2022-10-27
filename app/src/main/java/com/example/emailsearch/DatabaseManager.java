@@ -60,13 +60,13 @@ public class DatabaseManager extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void updateById(int id, String email, String firstName, String lastName) {
+    public void updateById(int id, String firstName, String lastName, String email) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         String sqlUpdate = "update " + TABLE_FRIEND;
         sqlUpdate += " set " + EMAIL + " = '" + email + "', ";
         sqlUpdate +=  FIRST_NAME + " = '" + firstName + "', ";
-        sqlUpdate +=  LAST_NAME + " = '" + lastName + "', ";
+        sqlUpdate +=  LAST_NAME + " = '" + lastName + "' ";
         sqlUpdate += " where " + ID + " = " + id;
 
         db.execSQL(sqlUpdate);

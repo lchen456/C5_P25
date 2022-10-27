@@ -50,7 +50,15 @@ public class Friend {
         return id + "; " + firstName + "; " + lastName + "; " + email;
     }
 
+    public String toNEString() {
+        return  firstName + " " + lastName + "; " + email;
+    }
+
     public String toNameString() {
         return firstName + " " + lastName;
+    }
+
+    public String toEmailString() {
+        return email;
     }
 }
