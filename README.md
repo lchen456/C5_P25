@@ -4,10 +4,8 @@
 
 _includes problem 24 and 22_
 
-App to manage group of friends:
-
 P22:
-- manage group of friends
+- app to manage group of friends:
 - a friend is defined as having a first name, a last name, and an email address
 - they should be stored in a database
 - the friend can be added or deleted
