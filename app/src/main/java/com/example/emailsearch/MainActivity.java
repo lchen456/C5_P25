@@ -7,6 +7,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.GridLayout;
@@ -35,8 +36,12 @@ public class MainActivity extends AppCompatActivity {
         searchbar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
+
+//                Log.d("query", query.toString());
+//                Log.d("query length", String.valueOf(query.length()));
+//                Log.d("result", dbManager.selectByEmail(query).toString());
                 if (query.length() > 0){
-                    result.setText(dbManager.selectByEmail(query).toString());
+                    result.setText(dbManager.selectByEmail(query).toNameString());
                 }
                 return true;
             }
@@ -46,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+
     }
 
     @Override

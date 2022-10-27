@@ -45,7 +45,12 @@ public class Friend {
         return email;
     }
 
+    @Override
     public String toString() {
         return id + "; " + firstName + "; " + lastName + "; " + email;
+    }
+
+    public String toNameString() {
+        return firstName + " " + lastName;
     }
 }

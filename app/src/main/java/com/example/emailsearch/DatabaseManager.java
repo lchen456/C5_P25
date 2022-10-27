@@ -25,9 +25,9 @@ public class DatabaseManager extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         // build sql create statement
         String sqlCreate = "create table " + TABLE_FRIEND + "( " + ID;
-        sqlCreate += " integer primary key autoincrement, " + EMAIL;
-        sqlCreate += " text, " + FIRST_NAME;
-        sqlCreate += " text, " + LAST_NAME + " text )";
+        sqlCreate += " integer primary key autoincrement, " + FIRST_NAME;
+        sqlCreate += " text, " + LAST_NAME;
+        sqlCreate += " text, " + EMAIL + " text )";
 
         db.execSQL(sqlCreate);
     }
@@ -43,9 +43,9 @@ public class DatabaseManager extends SQLiteOpenHelper {
     public void insert(Friend friend) {
         SQLiteDatabase db = this.getWritableDatabase();
         String sqlInsert = "insert into " + TABLE_FRIEND;
-        sqlInsert += " values( null, '" + friend.getEmail();
-        sqlInsert += "', '" + friend.getFirstName();
-        sqlInsert += "', '" + friend.getLastName() + "' )";
+        sqlInsert += " values( null, '" + friend.getFirstName();
+        sqlInsert += "', '" + friend.getLastName();
+        sqlInsert += "', '" + friend.getEmail() + "' )";
 
         db.execSQL(sqlInsert);
         db.close();
@@ -117,8 +117,10 @@ public class DatabaseManager extends SQLiteOpenHelper {
             friend = new Friend(Integer.parseInt(cursor.getString(0)),
                     cursor.getString(1), cursor.getString(2), cursor.getString(3));
         }
-
-        Log.d("result", friend.toString());
+        Log.d("index0", cursor.getString(0));
+        Log.d("index1", cursor.getString(1));
+        Log.d("index2", cursor.getString(2));
+        Log.d("index3", cursor.getString(3));
         return friend;
     }
 }
